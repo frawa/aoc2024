@@ -13,8 +13,10 @@ class UtilSuite extends munit.FunSuite {
   }
 
   test("data lines") {
-    val data = inputLines(Sample(Part2(42)))
-    val lines = IO.Unsafe.run(data).eval
-    assertEquals(lines, Seq("Hello", "World"))
+    IO.Unsafe.run {
+      inputLines(Sample(Part2(42))).map { lines =>
+        assertEquals(lines, Seq("Hello", "World"))
+      }
+    }.eval
   }
 }
