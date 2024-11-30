@@ -1,7 +1,7 @@
 import kyo.*
 
 // https://scalameta.org/munit/docs/getting-started.html
-class MySuite extends munit.FunSuite {
+class KyoSuite extends munit.FunSuite {
 
   test("first") {
     val a: Int < Abort[String] = Abort.get(Right(13))
