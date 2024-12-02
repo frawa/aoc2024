@@ -32,21 +32,16 @@ object Day02 {
           else false
         case _ => true
 
-    val increasing = go(_ <= _)(report.levels.head, report.levels.tail.toList)
+    val head = report.levels.head
+    val tail = report.levels.tail.toList
+
+    val increasing = go(_ <= _)(head, tail)
     if increasing
-    then
-      go((a, b) => b - a <= 3 && b - a > 0)(
-        report.levels.head,
-        report.levels.tail.toList
-      )
+    then go((a, b) => b - a <= 3 && b - a > 0)(head, tail)
     else
-      val decreasing = go(_ >= _)(report.levels.head, report.levels.tail.toList)
+      val decreasing = go(_ >= _)(head, tail)
       if decreasing
-      then
-        go((a, b) => a - b <= 3 && a - b > 0)(
-          report.levels.head,
-          report.levels.tail.toList
-        )
+      then go((a, b) => a - b <= 3 && a - b > 0)(head, tail)
       else false
   }
 
