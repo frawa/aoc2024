@@ -16,7 +16,7 @@ abstract class AoCFunSuiteBase extends munit.FunSuite {
     test(name) {
       import AllowUnsafe.embrace.danger // Required for unsafe operations
       IO.Unsafe.run {
-        inputLines(input).map(body)
+        inputLinesIO(input).map(body)
       }.eval
     }
   }
