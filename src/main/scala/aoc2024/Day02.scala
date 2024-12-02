@@ -7,11 +7,11 @@ import Util.*
 import Util.InputSpec.*
 
 object Day02 {
-  // def part1(): Int = {
-  //   IO.Unsafe.run {
-  //     inputLines(Part1(1)).map(doPart1)
-  //   }.eval
-  // }
+
+  val input1 = Part1(2)
+  val sample1 = Sample(input1)
+  val input2 = input1
+  val sample2 = sample1
 
   case class Report(levels: Seq[Int])
 

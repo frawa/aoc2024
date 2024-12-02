@@ -5,7 +5,7 @@ import aoc2024.Day01
 import kyo.*
 import AllowUnsafe.embrace.danger // Required for unsafe operations
 
-class Day01Suite extends munit.FunSuite {
+class Day01Suite extends AoCFunSuiteBase {
   import Day01.*
 
   test("read lists") {
@@ -18,31 +18,23 @@ class Day01Suite extends munit.FunSuite {
     assertEquals(pairs, Seq((1, 3), (2, 4)))
   }
 
-  test("sample 1") {
-    var result = IO.Unsafe.run {
-      inputLines(Sample(Part1(1))).map(doPart1)
-    }.eval
+  testInput("sample 1", sample1) { lines =>
+    var result = doPart1(lines)
     assertEquals(result, 11)
   }
 
-  test("part 1") {
-    var result = IO.Unsafe.run {
-      inputLines(Part1(1)).map(doPart1)
-    }.eval
+  testInput("part 1", input1) { lines =>
+    var result = doPart1(lines)
     assertEquals(result, 1222801)
   }
 
-  test("sample 2 ") {
-    var result = IO.Unsafe.run {
-      inputLines(Sample(Part1(1))).map(doPart2)
-    }.eval
+  testInput("sample 2", sample2) { lines =>
+    var result = doPart2(lines)
     assertEquals(result, 31)
   }
 
-  test("part 2 ") {
-    var result = IO.Unsafe.run {
-      inputLines(Part1(1)).map(doPart2)
-    }.eval
+  testInput("part 2", input2) { lines =>
+    var result = doPart2(lines)
     assertEquals(result, 22545250)
   }
 }

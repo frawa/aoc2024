@@ -7,6 +7,12 @@ import Util.*
 import Util.InputSpec.*
 
 object Day01 {
+
+  val input1 = Part1(1)
+  val sample1 = Sample(input1)
+  val input2 = input1
+  val sample2 = sample1
+
   def part1(): Int = {
     IO.Unsafe.run {
       inputLines(Part1(1)).map(doPart1)
