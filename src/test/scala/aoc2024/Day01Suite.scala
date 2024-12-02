@@ -1,12 +1,13 @@
-import aoc2024.Util.*
-import aoc2024.Util.InputSpec.*
-import aoc2024.Day01
+package aoc2024
 
 import kyo.*
+
+import Util.*
+import Util.InputSpec.*
+import Day01.*
 import AllowUnsafe.embrace.danger // Required for unsafe operations
 
 class Day01Suite extends AoCFunSuiteBase {
-  import Day01.*
 
   test("read lists") {
     val lists = readLists(Seq("1 2", "3 4"))

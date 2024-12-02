@@ -1,3 +1,5 @@
+package aoc2024
+
 import kyo.*
 
 // https://scalameta.org/munit/docs/getting-started.html

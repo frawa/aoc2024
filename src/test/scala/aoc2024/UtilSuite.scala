@@ -1,6 +1,9 @@
-import aoc2024.Util.*
-import aoc2024.Util.InputSpec.*
+package aoc2024
+
 import kyo.*
+
+import Util.*
+import Util.InputSpec.*
 
 class UtilSuite extends munit.FunSuite {
 

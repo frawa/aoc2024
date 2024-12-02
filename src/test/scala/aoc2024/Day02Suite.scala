@@ -1,12 +1,13 @@
-import aoc2024.Util.*
-import aoc2024.Util.InputSpec.*
-import aoc2024.Day02
+package aoc2024
 
 import kyo.*
+
+import Util.*
+import Util.InputSpec.*
+import Day02.*
 import AllowUnsafe.embrace.danger // Required for unsafe operations
 
 class Day02Suite extends AoCFunSuiteBase {
-  import Day02.*
 
   test("safe report") {
     val safe = isSafe(Report(Seq(7, 6, 4, 2, 1)))
