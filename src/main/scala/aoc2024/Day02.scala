@@ -5,6 +5,7 @@ import AllowUnsafe.embrace.danger // Required for unsafe operations
 
 import Util.*
 import Util.InputSpec.*
+import scala.annotation.tailrec
 
 object Day02 {
 
@@ -23,6 +24,7 @@ object Day02 {
   }
 
   def isSafe(report: Report): Boolean = {
+    @tailrec
     def go(f: (Int, Int) => Boolean)(h: Int, levels: List[Int]): Boolean =
       levels match
         case head :: next =>
@@ -53,6 +55,7 @@ object Day02 {
   }
 
   def isTolerated(report: Report): Boolean = {
+    @tailrec
     def go(prefix: List[Int], levels: List[Int]): Boolean =
       levels match
         case head :: tail =>
