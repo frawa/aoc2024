@@ -38,8 +38,8 @@ object Day02 {
         report.levels.tail.toList
       )
     else
-      val dereasing = go(_ >= _)(report.levels.head, report.levels.tail.toList)
-      if dereasing
+      val decreasing = go(_ >= _)(report.levels.head, report.levels.tail.toList)
+      if decreasing
       then
         go((a, b) => a - b <= 3 && a - b > 0)(
           report.levels.head,
