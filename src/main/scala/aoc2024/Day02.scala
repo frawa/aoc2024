@@ -48,7 +48,7 @@ object Day02 {
       else false
   }
 
-  def doPart1(lines: Seq[String]): Int = {
+  def part1(lines: Seq[String]): Int = {
     readReports(lines).count(isSafe)
   }
 
@@ -61,7 +61,7 @@ object Day02 {
     go(List.empty, report.levels.toList)
   }
 
-  def doPart2(lines: Seq[String]): Int = {
+  def part2(lines: Seq[String]): Int = {
     val reports = readReports(lines)
     val unsafes = reports.filterNot(isSafe)
     val safes = reports.size - unsafes.size

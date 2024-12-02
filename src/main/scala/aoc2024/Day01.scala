@@ -13,12 +13,6 @@ object Day01 {
   val input2 = input1
   val sample2 = sample1
 
-  def part1(): Int = {
-    IO.Unsafe.run {
-      inputLines(Part1(1)).map(doPart1)
-    }.eval
-  }
-
   def readLists(lines: Seq[String]): (Seq[Int], Seq[Int]) = {
     var leftRight = raw"(\d+) +(\d+)".r
     var both = lines.map { line =>
@@ -34,12 +28,12 @@ object Day01 {
   def pairUp(left: Seq[Int], right: Seq[Int]): Seq[(Int, Int)] =
     left.sorted.zip(right.sorted)
 
-  def doPart1(lines: Seq[String]): Int = {
+  def part1(lines: Seq[String]): Int = {
     val (l, r) = readLists(lines)
     pairUp(l, r).map(_ - _).map(Math.abs).sum
   }
 
-  def doPart2(lines: Seq[String]): Int = {
+  def part2(lines: Seq[String]): Int = {
     val (left, right) = readLists(lines)
 
     val total = left.map { l =>
