@@ -23,7 +23,7 @@ object Day02 {
     }
   }
 
-  def isSafe(report: Report): Boolean = {
+  def isSafe_(report: Report): Boolean = {
     @tailrec
     def go(f: (Int, Int) => Boolean)(h: Int, levels: List[Int]): Boolean =
       levels match
@@ -43,6 +43,21 @@ object Day02 {
       if decreasing
       then go((a, b) => a - b <= 3 && a - b > 0)(head, tail)
       else false
+  }
+
+  def isSafe(report: Report): Boolean = {
+    def check(increasing: Boolean, levels: Seq[Int]): Boolean = {
+      val ok: (Int, Int) => Boolean =
+        if increasing
+        then (a, b) => b - a <= 3 && b - a > 0
+        else (a, b) => a - b <= 3 && a - b > 0
+      levels.zip(levels.drop(1)).forall(ok.tupled)
+    }
+
+    report.levels.toList match
+      case a :: b :: _ if a < b => check(true, report.levels)
+      case a :: b :: _ if a > b => check(false, report.levels)
+      case _                    => false
   }
 
   def part1(lines: Seq[String]): Int = {
