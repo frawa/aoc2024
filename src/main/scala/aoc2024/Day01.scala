@@ -32,4 +32,16 @@ object Day01 {
     val (l, r) = readLists(lines)
     pairUp(l, r).map(_ - _).map(Math.abs).sum
   }
+
+  def doPart2(lines: Seq[String]): Int = {
+    val (left, right) = readLists(lines)
+
+    val total = left.map { l =>
+      val occurences = right.count(_ == l)
+      val score = l * occurences
+      score
+    }.sum
+
+    total
+  }
 }

@@ -31,4 +31,18 @@ class Day01Suite extends munit.FunSuite {
     }.eval
     assertEquals(result, 1222801)
   }
+
+  test("sample 2 ") {
+    var result = IO.Unsafe.run {
+      inputLines(Sample(Part1(1))).map(doPart2)
+    }.eval
+    assertEquals(result, 31)
+  }
+
+  test("part 2 ") {
+    var result = IO.Unsafe.run {
+      inputLines(Part1(1)).map(doPart2)
+    }.eval
+    assertEquals(result, 22545250)
+  }
 }
