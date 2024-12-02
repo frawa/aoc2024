@@ -1,8 +1,12 @@
-import aoc2024.Util.*
-import aoc2024.Util.InputSpec.*
+package aoc2024
+
 import kyo.*
-import scala.concurrent.Future
 import munit.Location
+
+import scala.concurrent.Future
+
+import Util.*
+import Util.InputSpec.*
 
 abstract class AoCFunSuiteBase extends munit.FunSuite {
 
