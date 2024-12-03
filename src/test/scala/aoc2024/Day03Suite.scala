@@ -24,13 +24,19 @@ class Day03Suite extends AoCFunSuiteBase {
     assertEquals(result, 191183308)
   }
 
+  testInput("partitionDos", sample2) { lines =>
+    var result = keepDos(lines.mkString)
+    assertEquals(result, "xmul(2,4)&mul[3,7]!^?mul(8,5))")
+  }
+
   testInput("sample 2", sample2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 48)
   }
 
   testInput("part 2", input2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    // assertEquals(result, 4246106) // too low
+    assertEquals(result, 92082041) // too low
   }
 }

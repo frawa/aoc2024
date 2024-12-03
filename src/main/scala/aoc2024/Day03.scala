@@ -11,11 +11,11 @@ object Day03 {
   val input1 = Part1(3)
   val sample1 = Sample(input1)
   val input2 = input1
-  val sample2 = sample1
-
-  val regex = raw"mul\((\d{1,3}),(\d{1,3})\)".r
+  val sample2 = Sample(Part2(3))
 
   def matchOperands(text: String): Seq[(Int, Int)] = {
+    val regex = raw"mul\((\d{1,3}),(\d{1,3})\)".r
+
     regex
       .findAllMatchIn(text)
       .flatMap { m =>
@@ -27,11 +27,18 @@ object Day03 {
       .toSeq
   }
 
+  def calc(operands: Seq[(Int, Int)]): Int =
+    operands.map(_ * _).sum
+
   def part1(lines: Seq[String]): Int = {
-    matchOperands(lines.mkString).map(_ * _).sum
+    calc(matchOperands(lines.mkString))
+  }
+
+  def keepDos(text: String): String = {
+    text.replaceAll(raw"don't\(\).*?do\(\)", "")
   }
 
   def part2(lines: Seq[String]): Int = {
-    0
+    calc(matchOperands(keepDos(lines.mkString)))
   }
 }
