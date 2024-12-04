@@ -39,7 +39,36 @@ object Day04 {
     patterns.map(countMatches(text)).sum
   }
 
+  def buildStarPatterns(n: Int): Seq[Regex] = {
+    val dots = s".{${n - 3}}"
+    def star1 = s"""|M.S${dots}
+                   |.A.${dots}
+                   |M.S
+                   |""".stripMargin.split("\n").mkString
+    def star2 = s"""|S.M${dots}
+                    |.A.${dots}
+                    |S.M
+                    |""".stripMargin.split("\n").mkString
+    def star3 = s"""|M.M${dots}
+                    |.A.${dots}
+                    |S.S
+                    |""".stripMargin.split("\n").mkString
+    def star4 = s"""|S.S${dots}
+                    |.A.${dots}
+                    |M.M
+                    |""".stripMargin.split("\n").mkString
+    Seq(
+      raw"(?=(${star1}))".r,
+      raw"(?=(${star2}))".r,
+      raw"(?=(${star3}))".r,
+      raw"(?=(${star4}))".r
+    )
+  }
+
   def part2(lines: Seq[String]): Int = {
-    0
+    val n = lines.head.length()
+    val patterns = buildStarPatterns(n + 1)
+    val text = lines.mkString(" ")
+    patterns.map(countMatches(text)).sum
   }
 }

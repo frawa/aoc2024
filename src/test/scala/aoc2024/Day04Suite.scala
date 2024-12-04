@@ -30,16 +30,17 @@ class Day04Suite extends AoCFunSuiteBase {
   testInput("part 1", input1) { lines =>
     var result = part1(lines)
     // assertEquals(result, 2363) // too high
-    assertEquals(result, 2336) // too high
+    assertEquals(result, 2336)
   }
 
   testInput("sample 2", sample2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 9)
   }
 
   testInput("part 2", input2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    // assertEquals(result, 1809) // too low
+    assertEquals(result, 1831)
   }
 }
