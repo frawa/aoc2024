@@ -18,5 +18,5 @@ lazy val root = project
       "io.getkyo" %% "kyo-core" % kyoVersion,
       "io.getkyo" %% "kyo-combinators" % kyoVersion
     ),
-    libraryDependencies += "org.scalameta" %% "munit" % "1.0.0" % Test
+    libraryDependencies += "org.scalameta" %% "munit" % "1.0.2" % Test
   )
