@@ -1,0 +1,45 @@
+package aoc2024
+
+import kyo.*
+import AllowUnsafe.embrace.danger // Required for unsafe operations
+
+import Util.*
+import Util.InputSpec.*
+import scala.util.matching.Regex
+
+object Day04 {
+
+  val input1 = Part1(4)
+  val sample1 = Sample(input1)
+  val input2 = input1
+  val sample2 = sample1
+
+  def countMatches(text: String)(regex: Regex): Int = {
+    regex.findAllMatchIn(text).size
+  }
+
+  def buildPatterns(n: Int): Seq[Regex] = {
+    def dot(i: Int) = s".{${i}}"
+    Seq(
+      raw"(?=(XMAS))".r,
+      raw"(?=(SAMX))".r,
+      raw"(?=(X${dot(n - 1)}M${dot(n - 1)}A${dot(n - 1)}S))".r,
+      raw"(?=(S${dot(n - 1)}A${dot(n - 1)}M${dot(n - 1)}X))".r,
+      raw"(?=(X${dot(n)}M${dot(n)}A${dot(n)}S))".r,
+      raw"(?=(S${dot(n)}A${dot(n)}M${dot(n)}X))".r,
+      raw"(?=(X${dot(n - 2)}M${dot(n - 2)}A${dot(n - 2)}S))".r,
+      raw"(?=(S${dot(n - 2)}A${dot(n - 2)}M${dot(n - 2)}X))".r
+    )
+  }
+
+  def part1(lines: Seq[String]): Int = {
+    val n = lines.head.length()
+    val patterns = buildPatterns(n + 1)
+    val text = lines.mkString(" ")
+    patterns.map(countMatches(text)).sum
+  }
+
+  def part2(lines: Seq[String]): Int = {
+    0
+  }
+}
