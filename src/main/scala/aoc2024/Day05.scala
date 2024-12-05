@@ -29,27 +29,49 @@ object Day05 {
     PrintQueue(rules, updates)
   }
 
+  // def inRightOrder(rules: Set[(Int, Int)])(queue: Seq[Int]): Boolean = {
+  //   def ok(before: Int, tail: Seq[Int]): Boolean =
+  //     tail.forall(after => !rules.contains((after, before)))
+
+  //   @tailrec
+  //   def go(pages: List[Int]): Boolean =
+  //     pages match
+  //       case p :: ps => ok(p, ps) && go(ps)
+  //       case _       => true
+
+  //   go(queue.toList)
+  // }
+
   def inRightOrder(rules: Set[(Int, Int)])(queue: Seq[Int]): Boolean = {
     def ok(before: Int, tail: Seq[Int]): Boolean =
       tail.forall(after => !rules.contains((after, before)))
 
-    @tailrec
-    def go(pages: List[Int]): Boolean =
+    Loop(queue.toList) { pages =>
       pages match
-        case p :: ps => ok(p, ps) && go(ps)
-        case _       => true
-
-    go(queue.toList)
+        case p :: ps =>
+          if ok(p, ps)
+          then Loop.continue(ps)
+          else Loop.done(false)
+        case _ => Loop.done(true)
+    }.eval
   }
 
   def part1(lines: Seq[String]): Int = {
     val PrintQueue(rules, updates) = buildPrintQueue(lines)
-    updates
-      .filter(inRightOrder(rules))
-      .map { updates =>
-        updates(updates.size / 2)
+    val corrects = updates
+      .map(update => IO(Some(update).filter(inRightOrder(rules))))
+
+    val calc = Async.parallel(4)(corrects)
+
+    import AllowUnsafe.embrace.danger
+    val result = KyoApp.Unsafe.runAndBlock(13.seconds)(calc)
+    result
+      .map { corrects =>
+        corrects.flatMap { updates =>
+          updates.map(updates => updates(updates.size / 2))
+        }.sum
       }
-      .sum
+      .getOrElse(0)
   }
 
   def fixRightOrder(rules: Set[(Int, Int)])(queue: Array[Int]): Array[Int] = {
