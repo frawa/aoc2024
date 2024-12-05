@@ -5,8 +5,6 @@ import kyo.*
 import Util.*
 import Util.InputSpec.*
 import Day05.*
-import AllowUnsafe.embrace.danger // Required for unsafe operations
-
 class Day05Suite extends AoCFunSuiteBase {
 
   testInput("build print queue", sample1) { lines =>

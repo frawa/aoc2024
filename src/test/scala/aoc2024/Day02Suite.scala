@@ -5,7 +5,6 @@ import kyo.*
 import Util.*
 import Util.InputSpec.*
 import Day02.*
-import AllowUnsafe.embrace.danger // Required for unsafe operations
 
 class Day02Suite extends AoCFunSuiteBase {
 

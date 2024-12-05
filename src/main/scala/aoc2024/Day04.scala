@@ -1,12 +1,10 @@
 package aoc2024
 
 import kyo.*
-import AllowUnsafe.embrace.danger // Required for unsafe operations
 
 import Util.*
 import Util.InputSpec.*
 import scala.util.matching.Regex
-
 object Day04 {
 
   val input1 = Part1(4)

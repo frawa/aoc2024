@@ -5,8 +5,6 @@ import kyo.*
 import Util.*
 import Util.InputSpec.*
 import Day04.*
-import AllowUnsafe.embrace.danger // Required for unsafe operations
-
 class Day04Suite extends AoCFunSuiteBase {
 
   test("overlapping") {
