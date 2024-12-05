@@ -60,4 +60,43 @@ class UtilSuite extends munit.FunSuite {
         .getOrThrow
     }
   }
+
+  test("sequential map") {
+    val n = 13131313
+    val range = Seq.range(0, n)
+    val calc: (Duration, Seq[Int]) < IO = for
+      sw <- Clock.stopwatch
+      incremented <- IO(range.map(_ + 1))
+      elapsed <- sw.elapsed
+    yield (elapsed, incremented)
+
+    val clocked = Clock.let(Clock.live)(calc)
+    import AllowUnsafe.embrace.danger
+    val result = KyoApp.Unsafe.runAndBlock(13.seconds)(clocked)
+
+    val (duration, incremented) = result.toMaybe.get
+    assertEquals(range.last, n - 1)
+    assertEquals(incremented.last, n)
+    println(s"FW sequential ${duration.toMillis}ms")
+  }
+
+  test("parallel map") {
+    val n = 13131313
+    val range = Seq.range(0, n)
+    val doit = Async.parallel(13)(range.map(_ + 1))
+    val calc: (Duration, Seq[Int]) < (Async & IO) = for
+      sw <- Clock.stopwatch
+      incremented <- IO(doit)
+      elapsed <- sw.elapsed
+    yield (elapsed, incremented)
+
+    val clocked = Clock.let(Clock.live)(calc)
+    import AllowUnsafe.embrace.danger
+    val result = KyoApp.Unsafe.runAndBlock(13.seconds)(clocked)
+
+    val (duration, incremented) = result.toMaybe.get
+    assertEquals(range.last, n - 1)
+    assertEquals(incremented.last, n)
+    println(s"FW parallel ${duration.toMillis}ms")
+  }
 }
