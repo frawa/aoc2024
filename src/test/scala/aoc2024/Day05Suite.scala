@@ -39,11 +39,11 @@ class Day05Suite extends AoCFunSuiteBase {
 
   testInput("sample 2", sample2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 123)
   }
 
   testInput("part 2", input2) { lines =>
     var result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 4944)
   }
 }

@@ -53,7 +53,18 @@ object Day05 {
       .sum
   }
 
+  def fixRightOrder(rules: Set[(Int, Int)])(queue: Array[Int]): Array[Int] = {
+    queue.sortWith((a, b) => rules.contains(a, b)).toArray
+  }
+
   def part2(lines: Seq[String]): Int = {
-    0
+    val PrintQueue(rules, updates) = buildPrintQueue(lines)
+    updates
+      .filterNot(inRightOrder(rules))
+      .map(fixRightOrder(rules))
+      .map { updates =>
+        updates(updates.size / 2)
+      }
+      .sum
   }
 }
