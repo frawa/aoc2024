@@ -52,4 +52,5 @@ class Day07Suite extends AoCFunSuiteBase {
     val result = part2(lines)
     assertEquals(result, 104824810233437L)
   }
+
 }

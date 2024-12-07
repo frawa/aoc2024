@@ -95,7 +95,8 @@ object Day07 {
 
   def part2(lines: Seq[String]): Long = {
     val eqs = parseEquations(lines)
-    val possible = eqs.filter(canBeMadeTrue2)
+    val possible =
+      Util.mapParallel(4, eqs)(eq => Some(eq).filter(canBeMadeTrue2)).flatten
     possible.map(_.value).sum
   }
 }
