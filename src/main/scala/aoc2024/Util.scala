@@ -19,7 +19,7 @@ object Util {
   def inputLinesAbort(
       input: InputSpec
   ): Seq[String] < Abort[FileNotFoundException] = {
-    var path = s"data/${dataName(input)}.txt"
+    val path = s"data/${dataName(input)}.txt"
     Abort.catching { Source.fromFile(path).getLines().toSeq }
   }
 

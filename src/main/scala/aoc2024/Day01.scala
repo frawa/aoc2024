@@ -12,8 +12,8 @@ object Day01 {
   val sample2 = sample1
 
   def readLists(lines: Seq[String]): (Seq[Int], Seq[Int]) = {
-    var leftRight = raw"(\d+) +(\d+)".r
-    var both = lines.map { line =>
+    val leftRight = raw"(\d+) +(\d+)".r
+    val both = lines.map { line =>
       line match {
         case leftRight(left, right) => (left.toInt, right.toInt)
       }

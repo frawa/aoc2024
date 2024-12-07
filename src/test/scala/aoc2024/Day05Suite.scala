@@ -8,7 +8,7 @@ import Day05.*
 class Day05Suite extends AoCFunSuiteBase {
 
   testInput("build print queue", sample1) { lines =>
-    var result = buildPrintQueue(lines)
+    val result = buildPrintQueue(lines)
     assertEquals(result.rules.size, 21)
     assertEquals(result.updates.size, 6)
   }
@@ -26,22 +26,22 @@ class Day05Suite extends AoCFunSuiteBase {
   }
 
   testInput("sample 1", sample1) { lines =>
-    var result = part1(lines)
+    val result = part1(lines)
     assertEquals(result, 143)
   }
 
   testInput("part 1", input1) { lines =>
-    var result = part1(lines)
+    val result = part1(lines)
     assertEquals(result, 6612)
   }
 
   testInput("sample 2", sample2) { lines =>
-    var result = part2(lines)
+    val result = part2(lines)
     assertEquals(result, 123)
   }
 
   testInput("part 2", input2) { lines =>
-    var result = part2(lines)
+    val result = part2(lines)
     assertEquals(result, 4944)
   }
 }
