@@ -56,11 +56,11 @@ class Day06Suite extends AoCFunSuiteBase {
 
   testInput("sample 2", sample2) { lines =>
     val result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 6)
   }
 
   testInput("part 2", input2) { lines =>
     val result = part2(lines)
-    assertEquals(result, 0)
+    assertEquals(result, 1984)
   }
 }

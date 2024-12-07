@@ -62,24 +62,54 @@ object Day06 {
       case Dir.Right => state.copy(dir = Dir.Down)
   }
 
-  def part1(lines: Seq[String]): Int = {
-    val map = buildMapData(lines)
-
+  def calcRoute(map: MapData): Set[State] = {
     val state = State(Dir.Up, map.currentPosition)
 
-    val visited = Loop(state, Set(state.pos)) { (state, visited) =>
+    val visited = Loop(state, Set(state)) { (state, visited) =>
       nextState(map.max)(state) match
         case Some(nextState) =>
           if !map.obstructions.contains(nextState.pos)
-          then Loop.continue(nextState, visited + nextState.pos)
+          then Loop.continue(nextState, visited + nextState)
           else Loop.continue(turnRight(state), visited)
         case None => Loop.done(visited)
     }.eval
+    visited
+  }
 
-    visited.size
+  def part1(lines: Seq[String]): Int = {
+    val map = buildMapData(lines)
+
+    val visited = calcRoute(map)
+
+    visited.map(_.pos).size
+  }
+
+  def isLooping(map: MapData): Boolean = {
+    val state = State(Dir.Up, map.currentPosition)
+
+    Loop(state, Set.empty) { (state, visited) =>
+      if visited.contains(state)
+      then Loop.done(true)
+      else
+        nextState(map.max)(state) match
+          case Some(nextState) =>
+            if !map.obstructions.contains(nextState.pos)
+            then Loop.continue(nextState, visited + state)
+            else Loop.continue(turnRight(state), visited + state)
+          case None => Loop.done(false)
+    }.eval
   }
 
   def part2(lines: Seq[String]): Int = {
-    0
+    val map = buildMapData(lines)
+    val visited = calcRoute(map).map(_.pos)
+    val candidates = visited - map.currentPosition
+    val news =
+      candidates
+        .filter(pos =>
+          isLooping(map.copy(obstructions = map.obstructions + pos))
+        )
+        .toSet
+    news.size
   }
 }
